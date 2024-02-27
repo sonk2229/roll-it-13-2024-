@@ -12,5 +12,6 @@ def yes_no(question):
 
 
 # Main routine
-want_instructions = yes_no("Do you want to read the instructions?")
-print(f"you chose{want_instructions}")
+while True:
+    want_instructions = yes_no("Do you want to read the instructions?")
+    print(f"you chose {want_instructions}")

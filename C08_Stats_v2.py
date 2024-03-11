@@ -1,11 +1,20 @@
-# finds the lowest, highest and average
-# score from a list
+# finds the lowest, highest and average score from a list
 def get_stats(stats_list):
     pass
+    # sort the lists.
+    stats_list.sort()
+
+    # find lowest, highest and average scores...
+
+    lowest_score = stats_list[0]
+    highest_score = stats_list[-1]
+    average_score = sum(stats_list) / len(stats_list)
+
+    return [lowest_score, highest_score, average_score]
 
 
 # Create lists to hold user and computer scores
-user_score = [10, 0, 13, 7, 10, 11]
+user_score = [10, 0, 13, 10, 10, 11]
 comp_score = [10, 11, 0, 0, 10, 11]
 
 # Loop six times - for testing purposes, ask the user to enter the 
@@ -21,18 +30,14 @@ comp_score = [10, 11, 0, 0, 10, 11]
 # calculate the lowest, highest and average
 # scores and display time
 
-# sort the lists.
-user_scores.sort()
-comp_scores.sort()
+user_stats = get_stats(user_score)
+comp_stats = get_stats(comp_score)
 
-print("user scores: ", user_scores)
-print(" computer scores: ", comp_score)
+print(" Game Statistics ")
+print(f"User - Lowest Score: {user_stats[0]}\t"
+      f"Highest Score: {user_stats[1]}\t "
+      f"Average Scores: {user_stats[2]}")
 
-# find lowest, highest and average scores...
-user_low = user_scores[0]
-user_high = user_scores[-1]
-user_average = sum(user_scores) / len(user_scores)
-
-print("Low: ", user_low)
-print("High: ", user_high)
-print("Average", user_average)
+print(f"Computer - Lowest Score: {comp_stats[0]}\t"
+      f"Highest Score: {comp_stats[1]}\t "
+      f"Average Scores: {comp_stats[2]}")

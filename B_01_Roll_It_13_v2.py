@@ -99,7 +99,6 @@ def int_check(question):
 
 # finds the lowest, highest and average score from a list
 def get_stats(stats_list):
-    pass
     # sort the lists.
     stats_list.sort()
 
@@ -122,19 +121,19 @@ num_rounds = 0
 
 
 # Create lists to hold user and computer scores
-user_points = []
-computer_points = []
+user_stats_list = []
+computer_stats_list = []
+game_history = []
 
+
+# Program starts here (with a heading)
 print()
 print("🎲🎲Roll it 13 🎲🎲")
 print()
 
-# loop for testing purposes
-
-
+# Display instructions if user wants to see them.
 want_instructions = yes_no("Do you want to read the instruction?")
 
-# checks users enter yes (y) or no (n)
 if want_instructions == "yes":
     instruction()
 
@@ -280,6 +279,10 @@ while user_score < target_score and comp_score < target_score:
 
         add_points = user_points
 
+    # Record round result and add it to the game history
+    round_result = f"Round {num_rounds} - User: {user_points}  \t Computer: {computer_points}"
+    game_history.append(round_result)
+
     # end of a single round
 
     # If the computer wins, add its points to its score
@@ -295,8 +298,8 @@ while user_score < target_score and comp_score < target_score:
         comp_score += add_points
         user_score += add_points
 
-# user_score.append(user_points)
-# comp_score.append(computer_points)
+    user_stats_list.append(user_points)
+    computer_stats_list.append(computer_points)
 
     print()
     print(f"🎲🎲🎲 User: {user_score} points | Computer: {comp_score} points 🎲🎲🎲 ")
@@ -305,17 +308,26 @@ while user_score < target_score and comp_score < target_score:
 print()
 print(f"Your final score is {user_score}")
 
+# Display game history if user wats to see it
+show_history = yes_no("Do you want to see the game history?")
+print("\n Game History  ")
+
+for item in game_history:
+    print(item)
+
+print()
+
 # calculate the lowest, highest and average
+user_stats = get_stats(user_stats_list)
+comp_stats = get_stats(computer_stats_list)
+
 # scores and display time
 
-user_stats = user_points
-comp_stats = computer_points
-
 print(" Game Statistics ")
-print(f"User - Lowest point: {user_points[0]}\t"
-      f"Highest point: {user_points[1]}\t "
-      f"Average points: {user_points[2]}")
+print(f"User - Lowest point: {user_stats[0]}\t"
+      f"Highest point: {user_stats[1]}\t "
+      f"Average points: {user_stats[2]:.2f}")
 
 print(f"Computer - Lowest Score: {comp_stats[0]}\t"
       f"Highest Score: {comp_stats[1]}\t "
-      f"Average Scores: {comp_stats[2]}")
+      f"Average Scores: {comp_stats[2]:.2f}")
